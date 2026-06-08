@@ -1,0 +1,4 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #FAFAF8; }
+button:hover { opacity: 0.85; }
+a { color: inherit; }
