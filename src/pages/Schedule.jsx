@@ -5,7 +5,7 @@ today.setHours(0, 0, 0, 0);
 
 const events = [
   { name: "Meet & Greet", date: new Date("2026-06-18T15:30:00Z"), sub: "Paid", description: "Come say hi before the launch. A casual intro to the community — bring something you've built or created with AI." },
-  { name: "Live Build Launch Session", date: new Date("2026-06-19T15:30:00Z"), type: "Live builds", sub: "Free", description: "A free 60-minute live session with a build demo in Claude, Claude Code, and GitHub. Open to anyone. No technical experience required." },
+  { name: "Live Build Launch Session", date: new Date("2026-06-19T15:30:00Z"), type: "Live builds", sub: "Free", link: "https://us06web.zoom.us/meeting/register/PeCN3GiERy2WkfNkseBCLw", description: "A free 60-minute live session with a build demo in Claude, Claude Code, and GitHub. Open to anyone. No technical experience required." },
   { name: "Tech Setup Session", date: new Date("2026-06-19T17:00:00Z"), type: "Live builds", sub: "Paid", tag: "Onboarding", description: "30-min hands-on group tech setup for paid subscribers. Get your Claude Code + GitHub stack ready." },
   { name: "Office Hours – Mon", date: new Date("2026-06-29T15:00:00Z"), type: "Office Hours", sub: "Paid", description: "Open office hours. Sign up for a 30-min slot focused on tech setup and wherever you're getting blocked." },
   { name: "Office Hours – Tue", date: new Date("2026-06-30T15:00:00Z"), type: "Office Hours", sub: "Paid", description: "Open office hours. Sign up for a 30-min slot focused on tech setup and wherever you're getting blocked." },
@@ -99,10 +99,16 @@ function EventModal({ event, onClose, onPrev, onNext, index, total }) {
           <div style={{ padding: "12px 16px", borderRadius: 10, background: "#F9F9F9", border: "1px solid #EBEBEB", textAlign: "center", marginBottom: 16 }}>
             <p style={{ fontSize: 12, color: "#888", margin: 0 }}>
               {event.sub === "Free"
-                ? "This session is open to everyone. Registration link coming soon."
+                ? event.link ? "This session is open to everyone." : "This session is open to everyone. Registration link coming soon."
                 : "Registration links available to HART Builders (paid subscribers)."}
             </p>
-            {event.sub === "Free" && (
+            {event.sub === "Free" && event.link && (
+              <a href={event.link} target="_blank" rel="noreferrer"
+                style={{ display: "inline-block", marginTop: 10, padding: "7px 16px", borderRadius: 8, background: "#1A1A1A", color: "#fff", fontSize: 12, fontWeight: 600, textDecoration: "none" }}>
+                Register now →
+              </a>
+            )}
+            {event.sub === "Free" && !event.link && (
               <a href="https://thehartstudio.substack.com" target="_blank" rel="noreferrer"
                 style={{ display: "inline-block", marginTop: 10, padding: "7px 16px", borderRadius: 8, background: "#1A1A1A", color: "#fff", fontSize: 12, fontWeight: 600, textDecoration: "none" }}>
                 Subscribe to get updates →
