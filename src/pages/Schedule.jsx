@@ -6,22 +6,22 @@ today.setHours(0, 0, 0, 0);
 const events = [
   { name: "Meet & Greet", date: new Date("2026-06-18T15:30:00Z"), sub: "Paid", description: "Come say hi before the launch. A casual intro to the community — bring something you've built or created with AI." },
   { name: "Live Build Launch Session", date: new Date("2026-06-19T15:30:00Z"), type: "Live builds", sub: "Free", link: "https://us06web.zoom.us/meeting/register/PeCN3GiERy2WkfNkseBCLw", description: "A free 60-minute live session with a build demo in Claude, Claude Code, and GitHub. Open to anyone. No technical experience required." },
-  { name: "Tech Setup Session", date: new Date("2026-06-19T17:00:00Z"), type: "Live builds", sub: "Paid", tag: "Onboarding", description: "30-min hands-on group tech setup for paid subscribers. Get your Claude Code + GitHub stack ready." },
+  { name: "Tech Setup Session", date: new Date("2026-06-19T17:00:00Z"), type: "Live builds", sub: "Paid", tags: ["Onboarding"], description: "30-min hands-on group tech setup for paid subscribers. Get your Claude Code + GitHub stack ready." },
   { name: "Office Hours – Mon", date: new Date("2026-06-29T21:00:00Z"), type: "Office Hours", sub: "Paid", description: "Open office hours. Sign up for a 30-min slot focused on tech setup and wherever you're getting blocked. Join as an observer to follow along." },
   { name: "Office Hours – Tue", date: new Date("2026-06-30T16:00:00Z"), type: "Office Hours", sub: "Paid", description: "Open office hours. Sign up for a 30-min slot focused on tech setup and wherever you're getting blocked. Join as an observer to follow along." },
   { name: "Office Hours – Wed", date: new Date("2026-07-01T21:00:00Z"), type: "Office Hours", sub: "Paid", description: "Open office hours. Sign up for a 30-min slot focused on tech setup and wherever you're getting blocked. Join as an observer to follow along." },
   { name: "Office Hours – Thu", date: new Date("2026-07-02T16:00:00Z"), type: "Office Hours", sub: "Paid", description: "Open office hours. Sign up for a 30-min slot focused on tech setup and wherever you're getting blocked. Join as an observer to follow along." },
-  { name: "Live Build #1 – Getting started (Onboarding)", date: new Date("2026-07-17T15:30:00Z"), type: "Live builds", sub: "Paid", tag: "Onboarding", description: "Introduction to the basic  development process. Walk through an end-to-end build process from idea to development to review to live update. Tech concepts covered includes: Claude Code, GitHub, localhost (to preview changes), peer review / pull request. Will use Open Room, a platform Alyssa built for easy building." },
-  { name: "Live Build #2 – Make it a habit (Onboarding)", date: new Date("2026-07-31T15:30:00Z"), type: "Live builds", sub: "Paid", tag: "Onboarding", description: "Practice what you learned in Session 1 with further builds and reps on the builder development cycle" },
-  { name: "Live Build #3 – Make it your own (Onboarding)", date: new Date("2026-08-14T15:30:00Z"), type: "Live builds", sub: "Paid", tag: "Onboarding", description: "How to set up your own repo and project." },
+  { name: "Live Build #1 – Getting started", date: new Date("2026-07-17T15:30:00Z"), type: "Live builds", sub: "Paid", tags: ["Onboarding"], description: "Introduction to the basic  development process. Walk through an end-to-end build process from idea to development to review to live update. Tech concepts covered includes: Claude Code, GitHub, localhost (to preview changes), peer review / pull request. Will use Open Room, a platform Alyssa built for easy building." },
+  { name: "Live Build #2 – Make it a habit", date: new Date("2026-07-31T15:30:00Z"), type: "Live builds", sub: "Paid", tags: ["Onboarding"], description: "Practice what you learned in Session 1 with further builds and reps on the builder development cycle" },
+  { name: "Live Build #3 – Make it your own", date: new Date("2026-08-14T15:30:00Z"), type: "Live builds", sub: "Paid", tags: ["Onboarding"], description: "How to set up your own repo and project." },
   { name: "Office Hours – Aug", date: new Date("2026-08-07T15:30:00Z"), type: "Office Hours", sub: "Paid", description: "Open office hours. Priority goes to newcomers that need help with tech setup. Join as an observer to follow along." },
-  { name: "Live Build #4 – Focused build (planned)", date: new Date("2026-08-28T15:30:00Z"), type: "Live builds", sub: "Paid", description: "The first proper HART Studio  live build session! Start with a brief demo by Alyssa, followed by open build time where people can run with it and help each other troubleshoot. Share what you built at the end of the session." },
-  { name: "Live Build #5 – Onboarding for newcomers (planned)", date: new Date("2026-09-11T15:30:00Z"), type: "Live builds", sub: "Paid", tag: "Onboarding", description: "A chance for newcomers to get up to speed with an end-to-end build overview. If there aren't enough new builders, we'll use this time for a regular build session." },
-  { name: "Live Build #6 – Build and share (planned)", date: new Date("2026-09-25T15:30:00Z"), type: "Live builds", sub: "Paid", description: "Given the same prompt, everyone builds their own version. Then we share what we made." },
+  { name: "Live Build #4 – Focused build", date: new Date("2026-08-28T15:30:00Z"), type: "Live builds", sub: "Paid", tags: ["Planned"], description: "The first proper HART Studio  live build session! Start with a brief demo by Alyssa, followed by open build time where people can run with it and help each other troubleshoot. Share what you built at the end of the session." },
+  { name: "Live Build #5 – Onboarding for newcomers", date: new Date("2026-09-11T15:30:00Z"), type: "Live builds", sub: "Paid", tags: ["Onboarding", "Planned"], description: "A chance for newcomers to get up to speed with an end-to-end build overview. If there aren't enough new builders, we'll use this time for a regular build session." },
+  { name: "Live Build #6 – Build and share", date: new Date("2026-09-25T15:30:00Z"), type: "Live builds", sub: "Paid", tags: ["Planned"], description: "Given the same prompt, everyone builds their own version. Then we share what we made." },
   { name: "Office Hours – Sep", date: new Date("2026-09-04T15:30:00Z"), type: "Office Hours", sub: "Paid", description: "Open office hours. Priority goes to newcomers that need help with tech setup. Join as an observer to follow along." },
-  { name: "Live Build #7 – Focused build (planned)", date: new Date("2026-10-09T15:30:00Z"), type: "Live builds", sub: "Paid", description: "Start with a brief demo by Alyssa, followed by open build time where people can run with it and help each other troubleshoot. Share what you built at the end of the session." },
+  { name: "Live Build #7 – Focused build", date: new Date("2026-10-09T15:30:00Z"), type: "Live builds", sub: "Paid", tags: ["Planned"], description: "Start with a brief demo by Alyssa, followed by open build time where people can run with it and help each other troubleshoot. Share what you built at the end of the session." },
   { name: "Office Hours – Oct", date: new Date("2026-10-02T15:30:00Z"), type: "Office Hours", sub: "Paid", description: "Open office hours. Priority goes to newcomers that need help with tech setup. Join as an observer to follow along." },
-  { name: "Live Build #8 – Onboarding for newcomers (planned)", date: new Date("2026-10-23T15:30:00Z"), type: "Live builds", sub: "Paid", tag: "Onboarding", description: "A chance for newcomers to get up to speed with an end-to-end build overview. If there aren't enough new builders, we'll use this time for a regular build session." },  
+  { name: "Live Build #8 – Onboarding for newcomers", date: new Date("2026-10-23T15:30:00Z"), type: "Live builds", sub: "Paid", tags: ["Onboarding", "Planned"], description: "A chance for newcomers to get up to speed with an end-to-end build overview. If there aren't enough new builders, we'll use this time for a regular build session." },  
 ];
 
 const PAGE_SIZE = 12;
@@ -37,6 +37,7 @@ const subColors = {
 };
 const tagColors = {
   Onboarding: { bg: "#FEF9C3", text: "#854D0E" },
+  Planned: { bg: "#F1F5F9", text: "#475569" },
 };
 
 const FILTERS = [
@@ -48,7 +49,7 @@ const FILTERS = [
 
 function applyFilter(events, filter) {
   if (!filter) return events;
-  if (filter === "Onboarding") return events.filter((e) => e.tag === "Onboarding");
+  if (filter === "Onboarding") return events.filter((e) => e.tags?.includes("Onboarding"));
   return events.filter((e) => e.type === filter);
 }
 
@@ -86,7 +87,7 @@ function EventModal({ event, onClose, onPrev, onNext, index, total }) {
           <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
             {tc && <span style={{ fontSize: 10, fontWeight: 600, padding: "2px 7px", borderRadius: 4, background: tc.bg, color: tc.text }}>{event.type}</span>}
             <span style={{ fontSize: 10, fontWeight: 600, padding: "2px 7px", borderRadius: 4, background: sc.bg, color: sc.text }}>{event.sub}</span>
-            {event.tag && <span style={{ fontSize: 10, fontWeight: 600, padding: "2px 7px", borderRadius: 4, background: tagColors[event.tag].bg, color: tagColors[event.tag].text }}>{event.tag}</span>}
+            {event.tags?.map((t) => <span key={t} style={{ fontSize: 10, fontWeight: 600, padding: "2px 7px", borderRadius: 4, background: tagColors[t].bg, color: tagColors[t].text }}>{t}</span>)}
           </div>
           <button onClick={onClose} style={{ background: "none", border: "none", fontSize: 20, cursor: "pointer", color: "#CCC", lineHeight: 1 }}>×</button>
         </div>
