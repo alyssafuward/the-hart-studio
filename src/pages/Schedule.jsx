@@ -4,7 +4,7 @@ const today = new Date();
 today.setHours(0, 0, 0, 0);
 
 const events = [
-  { name: "Meet & Greet", date: new Date("2026-06-18T15:30:00Z"), type: "Live builds", sub: "Free", description: "Come say hi before the launch. A casual intro to the community — bring something you've built or created with AI." },
+  { name: "Meet & Greet", date: new Date("2026-06-18T15:30:00Z"), sub: "Paid", description: "Come say hi before the launch. A casual intro to the community — bring something you've built or created with AI." },
   { name: "Live Build Launch Session", date: new Date("2026-06-19T15:30:00Z"), type: "Live builds", sub: "Free", description: "A free 60-minute live session with a build demo in Claude, Claude Code, and GitHub. Open to anyone. No technical experience required." },
   { name: "Tech Setup Session", date: new Date("2026-06-19T17:00:00Z"), type: "Live builds", sub: "Paid", tag: "Onboarding", description: "30-min hands-on group tech setup for paid subscribers. Get your Claude Code + GitHub stack ready." },
   { name: "Office Hours – Mon", date: new Date("2026-06-29T15:00:00Z"), type: "Office Hours", sub: "Paid", description: "Open office hours. Sign up for a 30-min slot focused on tech setup and wherever you're getting blocked." },
@@ -15,13 +15,13 @@ const events = [
   { name: "Live Build #2 – Make it a habit (Onboarding)", date: new Date("2026-07-31T15:30:00Z"), type: "Live builds", sub: "Paid", tag: "Onboarding", description: "Practice what you learned in Session 1 with further builds and reps on the builder development cycle" },
   { name: "Live Build #3 – Make it your own (Onboarding)", date: new Date("2026-08-14T15:30:00Z"), type: "Live builds", sub: "Paid", tag: "Onboarding", description: "How to set up your own repo and project." },
   { name: "Office Hours – Aug", date: new Date("2026-08-07T15:30:00Z"), type: "Office Hours", sub: "Paid", description: "Open office hours. Priority goes to newcomers that need help with tech setup." },
-  { name: "Live Build #4 – Focused build (planned)", date: new Date("2026-08-28T15:30:00Z"), type: "Live builds", sub: "Paid", tag: "Onboarding", description: "The first proper HART Studio  live build session! Start with a brief demo by Alyssa, followed by open build time where people can run with it and help each other troubleshoot. Share what you built at the end of the session." },
-  { name: "Live Build #5 – Onboarding for newcomers (planned)", date: new Date("2026-09-11T15:30:00Z"), type: "Live builds", sub: "Paid", description: "A chance for newcomers to get up to speed with an end-to-end build overview. If there aren't enough new builders, we'll use this time for a regular build session." },
+  { name: "Live Build #4 – Focused build (planned)", date: new Date("2026-08-28T15:30:00Z"), type: "Live builds", sub: "Paid", description: "The first proper HART Studio  live build session! Start with a brief demo by Alyssa, followed by open build time where people can run with it and help each other troubleshoot. Share what you built at the end of the session." },
+  { name: "Live Build #5 – Onboarding for newcomers (planned)", date: new Date("2026-09-11T15:30:00Z"), type: "Live builds", sub: "Paid", tag: "Onboarding", description: "A chance for newcomers to get up to speed with an end-to-end build overview. If there aren't enough new builders, we'll use this time for a regular build session." },
   { name: "Live Build #6 – Build and share (planned)", date: new Date("2026-09-25T15:30:00Z"), type: "Live builds", sub: "Paid", description: "Given the same prompt, everyone builds their own version. Then we share what we made." },
   { name: "Office Hours – Sep", date: new Date("2026-09-04T15:30:00Z"), type: "Office Hours", sub: "Paid", description: "Open office hours. Priority goes to newcomers that need help with tech setup." },
-  { name: "Live Build #7 – Focused build (planned)", date: new Date("2026-10-09T15:30:00Z"), type: "Live builds", sub: "Paid", tag: "Onboarding", description: "Start with a brief demo by Alyssa, followed by open build time where people can run with it and help each other troubleshoot. Share what you built at the end of the session." },
+  { name: "Live Build #7 – Focused build (planned)", date: new Date("2026-10-09T15:30:00Z"), type: "Live builds", sub: "Paid", description: "Start with a brief demo by Alyssa, followed by open build time where people can run with it and help each other troubleshoot. Share what you built at the end of the session." },
   { name: "Office Hours – Oct", date: new Date("2026-10-02T15:30:00Z"), type: "Office Hours", sub: "Paid", description: "Open office hours. Priority goes to newcomers that need help with tech setup." },
-  { name: "Live Build #8 – Onboarding for newcomers (planned)", date: new Date("2026-10-23T15:30:00Z"), type: "Live builds", sub: "Paid", description: "A chance for newcomers to get up to speed with an end-to-end build overview. If there aren't enough new builders, we'll use this time for a regular build session." },  
+  { name: "Live Build #8 – Onboarding for newcomers (planned)", date: new Date("2026-10-23T15:30:00Z"), type: "Live builds", sub: "Paid", tag: "Onboarding", description: "A chance for newcomers to get up to speed with an end-to-end build overview. If there aren't enough new builders, we'll use this time for a regular build session." },  
 ];
 
 const PAGE_SIZE = 12;
@@ -77,47 +77,51 @@ function getDaysInMonth(y, m) { return new Date(y, m + 1, 0).getDate(); }
 function getFirstDay(y, m) { return new Date(y, m, 1).getDay(); }
 
 function EventModal({ event, onClose, onPrev, onNext, index, total }) {
-  const tc = typeColors[event.type];
+  const tc = event.type ? typeColors[event.type] : null;
   const sc = subColors[event.sub];
   return (
     <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.45)", backdropFilter: "blur(4px)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 150, padding: 24 }}>
-      <div style={{ background: "#FAFAF8", borderRadius: 16, padding: "28px 28px", maxWidth: 420, width: "100%", boxShadow: "0 24px 48px rgba(0,0,0,0.18)" }}>
+      <div style={{ background: "#FAFAF8", borderRadius: 16, padding: "28px 28px", maxWidth: 420, width: "100%", boxShadow: "0 24px 48px rgba(0,0,0,0.18)", display: "flex", flexDirection: "column", height: 520 }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 16 }}>
           <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
-            <span style={{ fontSize: 10, fontWeight: 600, padding: "2px 7px", borderRadius: 4, background: tc.bg, color: tc.text }}>{event.type}</span>
+            {tc && <span style={{ fontSize: 10, fontWeight: 600, padding: "2px 7px", borderRadius: 4, background: tc.bg, color: tc.text }}>{event.type}</span>}
             <span style={{ fontSize: 10, fontWeight: 600, padding: "2px 7px", borderRadius: 4, background: sc.bg, color: sc.text }}>{event.sub}</span>
             {event.tag && <span style={{ fontSize: 10, fontWeight: 600, padding: "2px 7px", borderRadius: 4, background: tagColors[event.tag].bg, color: tagColors[event.tag].text }}>{event.tag}</span>}
           </div>
           <button onClick={onClose} style={{ background: "none", border: "none", fontSize: 20, cursor: "pointer", color: "#CCC", lineHeight: 1 }}>×</button>
         </div>
-        <h2 style={{ fontSize: 20, fontWeight: 700, color: "#1A1A1A", margin: "0 0 6px", letterSpacing: "-0.02em" }}>{event.name}</h2>
-        <p style={{ fontSize: 13, color: "#888", margin: "0 0 16px" }}>{formatDateLong(event.date)} · {formatTime(event.date)}</p>
-        {event.description && <p style={{ fontSize: 14, color: "#444", margin: "0 0 24px", lineHeight: 1.6 }}>{event.description}</p>}
-        <div style={{ padding: "12px 16px", borderRadius: 10, background: "#F9F9F9", border: "1px solid #EBEBEB", textAlign: "center" }}>
-          <p style={{ fontSize: 12, color: "#888", margin: 0 }}>
-            {event.sub === "Free"
-              ? "This session is open to everyone. Registration link coming soon."
-              : "Registration links available to HART Builders (paid subscribers)."}
-          </p>
-          {event.sub === "Free" && (
-            <a href="https://thehartstudio.substack.com" target="_blank" rel="noreferrer"
-              style={{ display: "inline-block", marginTop: 10, padding: "7px 16px", borderRadius: 8, background: "#1A1A1A", color: "#fff", fontSize: 12, fontWeight: 600, textDecoration: "none" }}>
-              Subscribe to get updates →
-            </a>
-          )}
-          {event.sub === "Paid" && (
-            <a href="https://thehartstudio.substack.com" target="_blank" rel="noreferrer"
-              style={{ display: "inline-block", marginTop: 10, padding: "7px 16px", borderRadius: 8, background: "#F97316", color: "#fff", fontSize: 12, fontWeight: 600, textDecoration: "none" }}>
-              Become a HART Builder →
-            </a>
-          )}
+        <div style={{ flex: 1, overflowY: "auto" }}>
+          <h2 style={{ fontSize: 20, fontWeight: 700, color: "#1A1A1A", margin: "0 0 6px", letterSpacing: "-0.02em" }}>{event.name}</h2>
+          <p style={{ fontSize: 13, color: "#888", margin: "0 0 16px" }}>{formatDateLong(event.date)} · {formatTime(event.date)}</p>
+          {event.description && <p style={{ fontSize: 14, color: "#444", margin: "0 0 8px", lineHeight: 1.6 }}>{event.description}</p>}
         </div>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 20 }}>
+        <div style={{ flexShrink: 0, paddingTop: 16 }}>
+          <div style={{ padding: "12px 16px", borderRadius: 10, background: "#F9F9F9", border: "1px solid #EBEBEB", textAlign: "center", marginBottom: 16 }}>
+            <p style={{ fontSize: 12, color: "#888", margin: 0 }}>
+              {event.sub === "Free"
+                ? "This session is open to everyone. Registration link coming soon."
+                : "Registration links available to HART Builders (paid subscribers)."}
+            </p>
+            {event.sub === "Free" && (
+              <a href="https://thehartstudio.substack.com" target="_blank" rel="noreferrer"
+                style={{ display: "inline-block", marginTop: 10, padding: "7px 16px", borderRadius: 8, background: "#1A1A1A", color: "#fff", fontSize: 12, fontWeight: 600, textDecoration: "none" }}>
+                Subscribe to get updates →
+              </a>
+            )}
+            {event.sub === "Paid" && (
+              <a href="https://thehartstudio.substack.com" target="_blank" rel="noreferrer"
+                style={{ display: "inline-block", marginTop: 10, padding: "7px 16px", borderRadius: 8, background: "#F97316", color: "#fff", fontSize: 12, fontWeight: 600, textDecoration: "none" }}>
+                Become a HART Builder →
+              </a>
+            )}
+          </div>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <button onClick={onPrev} disabled={index === 0}
             style={{ padding: "7px 16px", borderRadius: 8, border: "1.5px solid #E5E5E5", background: "#fff", color: index === 0 ? "#CCC" : "#555", fontSize: 12, cursor: index === 0 ? "default" : "pointer", fontFamily: "inherit" }}>← Prev</button>
           <span style={{ fontSize: 11, color: "#BBB", fontFamily: "monospace" }}>{index + 1} / {total}</span>
           <button onClick={onNext} disabled={index === total - 1}
             style={{ padding: "7px 16px", borderRadius: 8, border: "1.5px solid #E5E5E5", background: "#fff", color: index === total - 1 ? "#CCC" : "#555", fontSize: 12, cursor: index === total - 1 ? "default" : "pointer", fontFamily: "inherit" }}>Next →</button>
+          </div>
         </div>
       </div>
     </div>
@@ -137,7 +141,7 @@ function ListView({ events, onEventClick }) {
           <p style={{ fontSize: 13, color: "#BBB", textAlign: "center", padding: "32px 0" }}>No events in this category.</p>
         )}
         {pageEvents.map((event, i) => {
-          const tc = typeColors[event.type];
+          const tc = event.type ? typeColors[event.type] : null;
           const sc = subColors[event.sub];
           const isFirst = safePage === 0 && i === 0;
           return (
@@ -154,8 +158,8 @@ function ListView({ events, onEventClick }) {
                 <div style={{ fontSize: 14, fontWeight: 600, color: "#1A1A1A", marginBottom: 3, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{event.name}</div>
                 <div style={{ display: "flex", gap: 6, alignItems: "center", flexWrap: "wrap" }}>
                   <span style={{ fontSize: 11, color: "#888" }}>{formatTime(event.date)}</span>
-                  <span style={{ fontSize: 11, color: "#CCC" }}>·</span>
-                  <span style={{ fontSize: 10, fontWeight: 600, padding: "2px 7px", borderRadius: 4, background: tc.bg, color: tc.text }}>{event.type}</span>
+                  {tc && <><span style={{ fontSize: 11, color: "#CCC" }}>·</span>
+                  <span style={{ fontSize: 10, fontWeight: 600, padding: "2px 7px", borderRadius: 4, background: tc.bg, color: tc.text }}>{event.type}</span></>}
                   <span style={{ fontSize: 10, fontWeight: 600, padding: "2px 7px", borderRadius: 4, background: sc.bg, color: sc.text }}>{event.sub}</span>
                 </div>
               </div>
@@ -221,7 +225,7 @@ function CalendarView({ events, onEventClick }) {
                 return (
                   <div key={j} onClick={() => onEventClick(ev)}
                     style={{ fontSize: 9, fontWeight: 600, padding: "2px 4px", borderRadius: 3, background: tc.bg, color: tc.text, cursor: "pointer", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", lineHeight: 1.4, marginBottom: 2 }}>
-                    {ev.name.replace("Live Build Launch Session", "Launch").replace("Tech Setup Session", "Tech Setup").replace("Office Hours", "OH").replace(/Live Build #\d+ – (\(Onboarding\) )?/, "")}
+                    {ev.name.replace("Live Build Launch Session", "Launch").replace("Tech Setup Session", "Tech Setup").replace("Office Hours", "OH").replace(/Live Build #\d+ – /, "").replace(/ \(Onboarding\)| \(planned\)/g, "")}
                   </div>
                 );
               })}
