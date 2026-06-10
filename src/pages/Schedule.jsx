@@ -4,7 +4,7 @@ const today = new Date();
 today.setHours(0, 0, 0, 0);
 
 const events = [
-  { name: "Meet & Greet", date: new Date("2026-06-18T15:30:00Z"), sub: "Paid", description: "Come say hi before the launch. A casual intro to the community — bring something you've built or created with AI." },
+  { name: "Meet & Greet", date: new Date("2026-06-18T21:00:00Z"), sub: "Paid", description: "Come say hi before the launch. A casual intro to the community — bring something you've built or created with AI." },
   { name: "Live Build Launch Session", date: new Date("2026-06-19T15:30:00Z"), type: "Live builds", sub: "Free", link: "https://us06web.zoom.us/meeting/register/PeCN3GiERy2WkfNkseBCLw", description: "A free 60-minute live session with a build demo in Claude, Claude Code, and GitHub. Open to anyone. No technical experience required." },
   { name: "Tech Setup Session", date: new Date("2026-06-19T17:00:00Z"), type: "Live builds", sub: "Paid", tags: ["Onboarding"], description: "30-min hands-on group tech setup for paid subscribers. Get your Claude Code + GitHub stack ready." },
   { name: "Office Hours – Mon", date: new Date("2026-06-29T21:00:00Z"), type: "Office Hours", sub: "Paid", description: "Open office hours. Sign up for a 30-min slot focused on tech setup and wherever you're getting blocked. Join as an observer to follow along." },
